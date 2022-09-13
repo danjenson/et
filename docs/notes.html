@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    Example Notes
+  </title>
+  <meta
+    name="description"
+    content="This is a sample Edward Tufte Jekyll Theme."
+  />
+
+  <!-- Google Fonts -->
+  <link
+    href="//fonts.googleapis.com/css?family=Lato:400,400italic"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <!-- https://docs.mathjax.org/en/latest/input/tex/extensions/index.html -->
+  <script>
+    MathJax = {
+      loader: { load: ["[tex]/ams", "[tex]/physics", "[tex]/gensymb"] },
+      tex: {
+        packages: { "[+]": ["ams", "physics", "gensymb"] },
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  </script>
+  <!-- https://www.mathjax.org/#gettingstarted -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+  <link
+    rel="canonical"
+    href="/notes.html"
+  />
+</head>
+
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+  <nav class="group">
+         
+    <a href="/">About</a>
+        
+    <a href="/blog/">Blog</a>
+        
+    <a class="active" href="/notes.html" class="active"
+      >Example Notes</a
+    >
+      
+  </nav>
+</header>
+
+    <article class="group"><h1 id="prelude">Prelude</h1>
+
+<p><strong>Question</strong>: Can we improve on MCMC-based methods for sampling using
+Generative Flow Networks?</p>
+
+<p><strong>Answer</strong>: Yes, when there is structure shared between the modes in a
+distribution.</p>
+
+<h2 id="terminology">Terminology</h2>
+
+<h3 id="terms">Terms</h3>
+
+<ul>
+  <li><strong>DAG</strong>: Directed Acyclic Graph</li>
+  <li><strong>GFN</strong>: Generative Flow Network</li>
+  <li><strong>MCMC</strong>: Markov Chain Monte Carlo</li>
+  <li><strong>PPO</strong>: Proximal Policy Optimization</li>
+  <li><strong>RL</strong>: Reinforcement Learning
+<label for="mn-1" class="margin-toggle"> ⊕</label><input type="checkbox" id="mn-1" class="margin-toggle" /><span class="marginnote">This is an example Liquid <code class="language-plaintext highlighter-rouge">marginnote</code>. </span></li>
+  <li><strong>Proxy</strong>: A function that approximates an oracle, i.e. $R(x)$, trained using
+$(x,y)$ pairs, which can incorporate (Bayesian) uncertainty</li>
+  <li><strong>Active learning</strong>: A context in which “student” and “teacher” interact during training.</li>
+  <li><strong>Flow matching</strong>: The total flow going into a state must match the total
+flow leaving the state, except for the source, $s_0$, and sink(s), $s_f$ or
+$s_T$.
+<label for="mf-1" class="margin-toggle">⊕</label><input type="checkbox" id="mf-1" class="margin-toggle" /><span class="marginnote"><img class="fullwidth" src="/assets/img/side.png" /><br />This is side image.</span></li>
+  <li><strong>Assay</strong>: Measures the composition or quality of a substance.
+<label for="sn-1" class="margin-toggle sidenote-number"></label><input type="checkbox" id="sn-1" class="margin-toggle" /><span class="sidenote">This is an example Liquid <code class="language-plaintext highlighter-rouge">sidenote</code>. </span></li>
+</ul>
+
+<h3 id="notation">Notation</h3>
+
+<ul>
+  <li>$\mathcal{S}$: The set of states, i.e. the state space.</li>
+  <li>$\mathcal{A}$: The set of actions, i.e. the action space.</li>
+  <li>$\mathcal{A}(s)$: The set of allowed actions in state $s$.</li>
+  <li>$\mathcal{A}^\ast(s)$: The set of all sequences of actions allowed after
+state $s$, i.e. $\vec{a}$.</li>
+  <li>$C: \mathcal{A}^\ast\rightarrow \mathcal{S}$: Function that maps a sequence
+of actions to a state; when the sequence is incomplete, the reward is 0.
+    <ul>
+      <li>When the correspondence between actions and states is <strong>bijective</strong>, the
+states are uniquely described by some sequence $\vec{a}$ and the
+generative process can be represented as a tree.</li>
+      <li>When the correspondence is <strong>non-injective</strong>, i.e. multiple action
+sequences define the same $x$, the generative process resembles a DAG.</li>
+    </ul>
+  </li>
+  <li>$\tilde{V}: \mathcal{S}\rightarrow\mathbb{R}^+$: maps states to their
+expected values.</li>
+  <li>$\tau$: A trajectory, i.e. a sequences of states and actions or edges.</li>
+  <li>$\pi(a\mid s)$: The probability of an action $a\in\mathcal A$ conditional on
+a state $s\in\mathcal{S}$.</li>
+  <li>$\pi(s)$: The probability of visiting state $s$ when starting at $s_0$ and following $\pi(\cdot\mid\cdot)$.</li>
+  <li>$\mathcal{X}$: A set of discrete objects.</li>
+  <li>$R(x)$: The reward associated with <em>terminal</em> state $x\in\mathcal{X}$.</li>
+  <li>$F(s)$: Total flow going through state $s$; terminal states have out-flow $R(s)$.</li>
+  <li>$F(s, a)$: The total flow through edge $(s, a)$.</li>
+  <li>$F_\theta$: A flow parameterized by $\theta$.</li>
+  <li>$Z=F(s_0)=F(s_f)$: The partition function, which is equivalent to all the
+flow out of the source node or all the flow into the sink node.</li>
+</ul>
+
+<h1 id="generative-flow-networks">Generative Flow Networks</h1>
+
+<figure><img src="/assets/img/full-width.png" /><figcaption class="maincolumn-figure">A main column image.</figcaption></figure>
+
+<ul>
+  <li>Definitions:
+    <ul>
+      <li>$f$: energy function $\rightarrow$ generative distribution.</li>
+      <li>Transforms a positive reward function into a generative policy that
+samples in proportion returns.</li>
+      <li>$\pi(x) \approx \frac{R(x)}{Z}=\frac{R(x)}{\sum_{x^{\prime} \in \mathcal{X}} R\left(x^{\prime}\right)}$
+where $x\in\mathcal{X}$</li>
+      <li>The <em>flow consistency equations</em> ensure that the inflow must equal outflow
+(note that for interior nodes $R(s)=0$ and for terminal nodes
+$A(s)=\emptyset$):
+\(\sum_{s, a: T(s, a)=s^{\prime}} F(s, a)
+=R\left(s^{\prime}\right)+\sum_{a^{\prime}
+\in \mathcal{A}\left(s^{\prime}\right)} F\left(s^{\prime}, a^{\prime}\right)\)</li>
+    </ul>
+  </li>
+  <li>
+    <p>Propositions:</p>
+
+    <ul>
+      <li><strong>Proposition 1</strong>: Illustrates the “overcounting” problem in the non-injective case.
+        <ul>
+          <li>Given:
+\(\begin{aligned}
+  s_0
+  &amp;= C(\emptyset) \\
+  \pi(a\mid s)
+  &amp;= \frac{\tilde{V}(s+a)}
+    {\sum_{b\in\mathcal{A}(s)}\tilde{V}(s+b)} \\
+  \pi(\vec{a}=(a_1,\ldots, a_N))
+  &amp;= \Pi_{i=1}^N \pi(a_i\mid C(a_1,\ldots,a_{i-1})) \\
+\end{aligned}\)</li>
+          <li>Then:
+            <ul>
+              <li>The probability of a given state is equivalent to the sum of all action
+sequences leading to that state,
+$\pi=\sum_{\vec{a}_i:C(\vec{a}_i)=s}\pi(\vec{a}_i)$.</li>
+              <li>If $C$ is bijective, then $\pi(s)=\frac{\tilde{V}(s)}{\tilde{V}(s_0)}$
+and as a special case for terminal states $x$,
+$\pi(x)=\frac{R(x)}{\sum_{x\in\mathcal{X}}R(x)}$.</li>
+              <li>If $C$ is non-injective and there are $n(x)$ distinct action sequences
+$\vec{a_i}$ such that $C(\vec{a_i})=x$, then
+$\pi(x)=\frac{n(x)R(x)}{\sum_{x’\in\mathcal{X}}n(x’)R(x’)}$.</li>
+            </ul>
+          </li>
+          <li>Comments:
+            <ul>
+              <li>In combinatorial spaces, i.e. molecules, larger molecules would be
+exponentially more likely to be sampled because there are more paths
+leading to them, which means that $\tilde{V}$ is biased, since it
+assumes the MDP’s structure is a tree.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Proposition 2</strong>: Shows that $\pi(a\mid s)=\frac{F(s,a)}{F(s)}$ creates
+a generative policy where $\pi(x)\propto R(x)$ regardless of whether $C$
+is bijective or non-injective.
+        <ul>
+          <li>Given:
+\(\begin{aligned}
+  \pi(a\mid s)
+  &amp;=\frac{F(s,a)}{F(s)},\text{ where }F(s,a) &gt; 0 \\
+  F(s)
+  &amp;= R(s) + \sum_{a\in\mathcal{A}(s)}F(s,a) \\
+  \sum_{s, a: T(s, a)=s^{\prime}} F(s, a)
+  &amp;=R\left(s^{\prime}\right)+\sum_{a^{\prime}
+  \in \mathcal{A}\left(s^{\prime}\right)} F\left(s^{\prime}, a^{\prime}\right)
+\end{aligned}\)</li>
+          <li>Then:
+            <ul>
+              <li>$\pi(s)=\frac{F(s)}{F(s_0)}$ for non-terminal $s$.</li>
+              <li>$F(s_0)=\sum_{x\in\mathcal{X}}R(x)$</li>
+              <li>$\pi(x)=\frac{R(x)}{\sum_{x’\in\mathcal{X}} R(x’)}$ for terminal $x\in\mathcal{X}$</li>
+            </ul>
+          </li>
+          <li>Comments:
+            <ul>
+              <li>In all cases, $\sum_{x\in\mathcal{X}}\pi(x)=1$ because terminal states
+are mutually exclusive.</li>
+              <li>In the non-injective case, $\sum_{s\in\mathcal{S}}\pi(s)\ne 1$ in
+general because internal states are not mutually exclusive.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Proposition 3</strong>: Off-policy sampling works provided the sampling policy
+$P$ has adequate support.
+        <ul>
+          <li>Given:
+            <ul>
+              <li>The exploratory sampling policy $P$ parameterized by $\theta’$ has the
+same support as the optimal $\pi$ for a consistent flow
+$F^\ast\in\mathcal{F}^\ast$, i.e. in flow equals out flow.</li>
+              <li>$\exists \theta: F_\theta=F^\ast$, i.e. there is a sufficiently rich family of predictors.</li>
+              <li>$\theta^\ast\in \arg\min_\theta\mathbb{E_{\tau\sim P(\theta’)}}\left[L_\theta(\tau)\right]$,
+where $L_\theta$ is the Flow-matching Loss.</li>
+            </ul>
+          </li>
+          <li>Then:
+            <ul>
+              <li>A global optimum for the expected loss generates the correct flows:
+                <ul>
+                  <li>$\forall\tau\sim P(\theta’)$:
+                    <ul>
+                      <li>$F_{\theta^\ast}=F^\ast$</li>
+                      <li>$L_{\theta^\ast}(\tau)=0$</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>If $\pi_{\theta^\ast}(a\mid s)=\frac{F_{\theta^\ast}(s, a)}{\sum_{a’\in\mathcal{A}(s)}F_{\theta^\ast}(s,a’)}$
+then $\pi_{\theta^\ast}(x)=\frac{R(x)}{Z}$.</li>
+            </ul>
+          </li>
+          <li>Comments:
+            <ul>
+              <li>In general, there are an infinite number of solutions. Imagine a case
+where only two trajectories are possible,
+$\tau_1=(s_0,a_1,s_A,a_2,s_T)$ and $\tau_2=(s_0,a_3,s_B,a_4,s_T)$. Then
+$F(s_A)+F(s_B)=R(s_T)$ and the solution is any linear combination of
+the two, i.e. $F(s_A)=\alpha$ and $F(s_B)=r-\alpha$ for $\alpha\in[0,
+r]$.</li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>Objective Functions:</p>
+
+    <ul>
+      <li><strong>Naive flow-matching loss</strong>:
+\(\tilde{\mathcal{L}}_\theta(\tau)
+=\sum_{s^{\prime} \in \tau \neq s_0}\left(\sum_{s, a: T(s, a)=s^{\prime}}
+F_\theta(s, a)
+-R\left(s^{\prime}\right)
+-\sum_{a^{\prime} \in \mathcal{A}\left(s^{\prime}\right)}
+F_\theta\left(s^{\prime}, a^{\prime}\right)\right)^2\)
+        <ul>
+          <li>Issues:
+            <ul>
+              <li>Flow variability:
+                <ul>
+                  <li><strong>Problem</strong>: flow will be much larger for nodes near the source; the
+higher the cardinality of $\mathcal{X}$, the smaller the terminal
+flow for each terminal state $x$.</li>
+                  <li><strong>Solution</strong>: estimate flow on the log scale.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+      <li><strong>Flow-matching Loss</strong>:
+\(\mathcal{L}_{\theta, \epsilon}(\tau)
+=\sum_{s^{\prime} \in \tau \neq s_0}\left(\log \left[\epsilon
++\sum_{s, a: T(s, a)=s^{\prime}} \exp F_\theta^{\log }(s, a)\right]
+-\log \left[\begin{array}{c}
+\epsilon
++R\left(s^{\prime}\right)+\sum_{a^{\prime} \in \mathcal{A}\left(s^{\prime}\right)}
+\exp F_\theta^{\log }\left(s^{\prime}, a^{\prime}\right)
+\end{array}\right]\right)^2\)
+        <ul>
+          <li>Issues:
+            <ul>
+              <li>Numerical instability:
+                <ul>
+                  <li><strong>Problem</strong>: taking the logarithm of very small flows.</li>
+                  <li><strong>Solution</strong>: the hyperpameter $\epsilon$ adjusts the pressure on
+matching small vs. large flows; the larger the value, the less
+sensitive to small flows; in practice, $\epsilon\approx \min_s R(s)$.</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Details:
+    <ul>
+      <li>When the mapping between action sequences and states is bijective,
+generating one $x$ is like an episode in a tree-structured deterministic
+MDP where the leaves are terminal states; in this case $\tilde{V}(s)$ is
+the sum of all descendant rewards.</li>
+      <li>When the mapping is non-injective, methods like MaxEntRL and other
+autoregressive methods “overcount.”</li>
+    </ul>
+  </li>
+  <li>Examples:
+    <ul>
+      <li>Molecules:
+        <ul>
+          <li>$\mathcal{X}$ is a collection of molecules.</li>
+          <li>$R(x)$ measures a chemical property of the molecule, which is a proxy for
+actual values obtained from assays.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Controls:
+    <ul>
+      <li>Temperature to control exploration around modes.</li>
+      <li>Powers of returns, i.e. $R(x)^\beta$, also control exploration.</li>
+    </ul>
+  </li>
+  <li>Advantages:
+    <ul>
+      <li>Off-policy training: can use samples generated by $\pi_T$, which is not the
+same as the trained distribution, provided it has adequate support for the
+true distribution.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="empirical-results">Empirical Results</h1>
+
+<ul>
+  <li>Hypergrid:
+    <ul>
+      <li>Converges to $\pi(x)\propto R(x)$.</li>
+      <li>Requires less samples than MCMC and PPO under various performance metrics.</li>
+      <li>Recovers all the modes and does so faster than MCMC and PPO.</li>
+      <li>Robust to separation between modes.</li>
+      <li>Top-k returns are greater in an active learning setting for nearly all rounds.</li>
+    </ul>
+  </li>
+  <li>Molecule generation:
+    <ul>
+      <li>Generates higher reward molecules than baselines.</li>
+      <li>Generates more diverse candidates than baselines.</li>
+      <li>Top-k returns are greater in an active learning setting for nearly all rounds.</li>
+    </ul>
+  </li>
+</ul>
+
+<h1 id="comparisons">Comparisons</h1>
+
+<h3 id="gfns-vs-rl">GFNs vs. RL</h3>
+
+<ul>
+  <li>RL methods approximate the best possible policy in static and stochastic
+environments, i.e. they put the probability mass on the best action in each
+state.</li>
+  <li>GFNs approximate distributions in deterministic environments.</li>
+</ul>
+
+<h3 id="gfns-vs-mcmc">GFNs vs. MCMC</h3>
+
+<ul>
+  <li>GFNs trade sampling complexity (MCMC hallmark) for training complexity;
+training this model amortizes the cost of generating samples.</li>
+  <li>Bootstrapping can cause optimization challenge and limit performance.</li>
+  <li>MCMC suffers from mode-mixing problem, i.e. probability deserts between high
+value modes.</li>
+  <li>MCMC methods are expensive when they generate samples uniformly because they
+generate low value samples.</li>
+  <li>When the modes are random, GFNs should provide no added benefit.</li>
+</ul>
+</article>
+    <span class="print-footer"
+  >Example Notes - Daniel Jenson
+</span>
+ <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="your-email@example.com"><span class="icon-mail3"></span></a></li>    
+    
+      <li>
+        <a href="https://twitter.com/edwardtufte"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="https://github.com/danjenson/et"><span class="icon-github"></span></a>
+      </li>
+      
+  </ul>
+<div class="credits">
+<span>&copy; 2022 &nbsp;&nbsp;DANIEL JENSON</span></br> <br>
+<span>This site created with the <a href="//github.com/danjenson/et">Edward Tufte theme for Edward Tufte Jekyll Theme </a> in <a href="//jekyllrb.com">Jekyll</a>.</span> 
+</div>  
+</footer>
+
+  </body>
+</html>

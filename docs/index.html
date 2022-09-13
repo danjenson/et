@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>
+    About
+  </title>
+  <meta
+    name="description"
+    content="This is a sample Edward Tufte Jekyll Theme."
+  />
+
+  <!-- Google Fonts -->
+  <link
+    href="//fonts.googleapis.com/css?family=Lato:400,400italic"
+    rel="stylesheet"
+    type="text/css"
+  />
+
+  <!-- https://docs.mathjax.org/en/latest/input/tex/extensions/index.html -->
+  <script>
+    MathJax = {
+      loader: { load: ["[tex]/ams", "[tex]/physics", "[tex]/gensymb"] },
+      tex: {
+        packages: { "[+]": ["ams", "physics", "gensymb"] },
+        inlineMath: [
+          ["$", "$"],
+          ["\\(", "\\)"],
+        ],
+      },
+      svg: {
+        fontCache: "global",
+      },
+    };
+  </script>
+  <!-- https://www.mathjax.org/#gettingstarted -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script
+    id="MathJax-script"
+    async
+    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"
+  ></script>
+  <link rel="stylesheet" type="text/css" href="/assets/css/main.css">
+
+  <link
+    rel="canonical"
+    href="/"
+  />
+</head>
+
+  <body>
+    <!--- Header and nav template site-wide -->
+<header>
+  <nav class="group">
+         
+    <a class="active" href="/" class="active"
+      >About</a
+    >
+        
+    <a href="/blog/">Blog</a>
+        
+    <a href="/notes.html">Example Notes</a>
+      
+  </nav>
+</header>
+
+    <article class="group"><h2 id="edward-tufte-jekyll-theme">Edward Tufte Jekyll Theme</h2>
+
+<p>This is an <a href="https://en.wikipedia.org/wiki/Edward_Tufte">Edward Tufte</a> theme
+based on <a href="https://github.com/clayh53/tufte-jekyll">clayh53/tufte-jekyll</a>. It is
+updated to be
+<a href="https://github.com/benbalter/jekyll-remote-theme">jekyll-remote-theme</a>
+compatible and tested with <code class="language-plaintext highlighter-rouge">ruby 3.1</code> and <code class="language-plaintext highlighter-rouge">jekyll 3.9</code>. You can learn how
+Jekyll sites work and how to customize them <a href="https://jekyllrb.com/docs/">here</a>.</p>
+
+<p>To use this theme, add the following to your <code class="language-plaintext highlighter-rouge">_config.yml</code>:</p>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">remote_theme</span><span class="pi">:</span> <span class="s">danjenson/et</span>
+<span class="na">markdown</span><span class="pi">:</span> <span class="s">kramdown</span>
+<span class="na">plugins</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">...</span>
+  <span class="pi">-</span> <span class="s">jekyll-remote-theme</span>
+<span class="na">footer</span><span class="pi">:</span> <span class="c1"># run `grep icon-` in project folder for icon names</span>
+  <span class="pi">-</span> <span class="na">link</span><span class="pi">:</span> <span class="s">https://twitter.com/edwardtufte</span>
+    <span class="na">icon</span><span class="pi">:</span> <span class="s">icon-twitter</span>
+  <span class="pi">-</span> <span class="na">link</span><span class="pi">:</span> <span class="s">https://github.com/danjenson/et</span>
+    <span class="na">icon</span><span class="pi">:</span> <span class="s">icon-github</span>
+</code></pre></div></div>
+
+<p>Then, to run locally:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>bundle add jekyll-remote-theme webrick
+bundle <span class="nb">install
+</span>bundle <span class="nb">exec </span>jekyll serve
+</code></pre></div></div>
+
+<p>You can also use latex with <code class="language-plaintext highlighter-rouge">$$</code>, e.g. <code class="language-plaintext highlighter-rouge">$$f^2$$</code> becomes \(f^2\). To create a
+block, create a newline before the opening <code class="language-plaintext highlighter-rouge">$$</code>. You can see <a href="https://docs.mathjax.org/en/latest/input/tex/macros/index.html">here</a> the list of available mathjax commands.</p>
+
+<p>Here are some quirks:</p>
+
+<ol>
+  <li>Mathjax prefers subscripts inside tags, i.e. <code class="language-plaintext highlighter-rouge">\mathbb{E_{\tau\sim P(\theta')}}</code> renders $\mathbb{E_{\tau\sim P(\theta’)}}$, but <code class="language-plaintext highlighter-rouge">\mathbb{E}_{\tau\sim P(\theta')}</code> will not render correctly. Same for <code class="language-plaintext highlighter-rouge">\vec{a_i}</code> and <code class="language-plaintext highlighter-rouge">\vec{a}_i</code>.</li>
+</ol>
+
+<p>Available liquid tags:</p>
+
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Capitalizes words
+&lt;span class='newthought'&gt;Example website: &lt;a href='http://example.com'&gt;example label&lt;/a&gt;&lt;/span&gt; 
+# Short quotation
+&lt;div class='epigraph'&gt;&lt;blockquote&gt;&lt;p&gt; "How did you go bankrupt?" Two ways. Gradually, then suddenly.&lt;/p&gt;&lt;footer&gt;Ernest Hemingway, &lt;cite&gt; "The Sun Also Rises" &lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;&lt;/div&gt;
+# Indexed note that appears in margin
+&lt;label for='sidenote-id' class='margin-toggle sidenote-number'&gt;&lt;/label&gt;&lt;input type='checkbox' id='sidenote-id' class='margin-toggle'/&gt;&lt;span class='sidenote'&gt;This is a random sidenote &lt;/span&gt;
+# Non-indexed note that appears in margin
+&lt;label for='margin-note-id' class='margin-toggle'&gt; &amp;#8853;&lt;/label&gt;&lt;input type='checkbox' id='margin-note-id' class='margin-toggle'/&gt;&lt;span class='marginnote'&gt;Random thought when drinking &lt;/span&gt;
+# Full-width image
+&lt;figure class='fullwidth'&gt;&lt;img src='/assets/img/full-width.png'/&gt;&lt;figcaption&gt;A full-width image.&lt;/figcaption&gt;&lt;/figure&gt;
+# Main-column image
+&lt;figure&gt;&lt;img src='http://example.com/image.jpg'/&gt;&lt;figcaption class='maincolumn-figure'&gt;Main column image.&lt;/figcaption&gt;&lt;/figure&gt;
+# Margin image
+&lt;label for='margin-figure-id' class='margin-toggle'&gt;&amp;#8853;&lt;/label&gt;&lt;input type='checkbox' id='margin-figure-id' class='margin-toggle'/&gt;&lt;span class='marginnote'&gt;&lt;img class='fullwidth' src='/assets/img/side.png'/&gt;&lt;br&gt;This is the caption&lt;/span&gt;
+</code></pre></div></div>
+</article>
+    <span class="print-footer"
+  >About - Daniel Jenson
+</span>
+ <footer>
+  <hr class="slender">
+  <ul class="footer-links">
+    <li><a href="your-email@example.com"><span class="icon-mail3"></span></a></li>    
+    
+      <li>
+        <a href="https://twitter.com/edwardtufte"><span class="icon-twitter"></span></a>
+      </li>
+    
+      <li>
+        <a href="https://github.com/danjenson/et"><span class="icon-github"></span></a>
+      </li>
+      
+  </ul>
+<div class="credits">
+<span>&copy; 2022 &nbsp;&nbsp;DANIEL JENSON</span></br> <br>
+<span>This site created with the <a href="//github.com/danjenson/et">Edward Tufte theme for Edward Tufte Jekyll Theme </a> in <a href="//jekyllrb.com">Jekyll</a>.</span> 
+</div>  
+</footer>
+
+  </body>
+</html>
