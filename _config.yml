@@ -23,8 +23,8 @@ author: Daniel Jenson
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   This is a sample Edward Tufte Jekyll Theme.
-baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+baseurl: "/et" # the subpath of your site, e.g. /blog
+url: "https://danjenson.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 footer:
   - link: https://twitter.com/edwardtufte
     icon: icon-twitter
