@@ -106,22 +106,24 @@ block, create a newline before the opening <code class="language-plaintext highl
   <li>Mathjax prefers subscripts inside tags, i.e. <code class="language-plaintext highlighter-rouge">\mathbb{E_{\tau\sim P(\theta')}}</code> renders $\mathbb{E_{\tau\sim P(\theta’)}}$, but <code class="language-plaintext highlighter-rouge">\mathbb{E}_{\tau\sim P(\theta')}</code> will not render correctly. Same for <code class="language-plaintext highlighter-rouge">\vec{a_i}</code> and <code class="language-plaintext highlighter-rouge">\vec{a}_i</code>.</li>
 </ol>
 
-<p>Available liquid tags:</p>
+<p>Additional Liquid tags:</p>
 
-<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code># Capitalizes words
-&lt;span class='newthought'&gt;Example website: &lt;a href='http://example.com'&gt;example label&lt;/a&gt;&lt;/span&gt; 
+<div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+# Capitalizes words
+<span class="p">{%</span><span class="w"> </span><span class="nt">newthought</span><span class="w"> </span><span class="s2">"Example website: &lt;a href='http://example.com'&gt;example label&lt;/a&gt;"</span><span class="w"> </span><span class="p">%}</span>
 # Short quotation
-&lt;div class='epigraph'&gt;&lt;blockquote&gt;&lt;p&gt; "How did you go bankrupt?" Two ways. Gradually, then suddenly.&lt;/p&gt;&lt;footer&gt;Ernest Hemingway, &lt;cite&gt; "The Sun Also Rises" &lt;/cite&gt;&lt;/footer&gt;&lt;/blockquote&gt;&lt;/div&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">epigraph</span><span class="w"> </span><span class="s1">' "How did you go bankrupt?" Two ways. Gradually, then suddenly.'</span><span class="w"> </span><span class="s1">'Ernest Hemingway'</span><span class="w"> </span><span class="s1">' "The Sun Also Rises" '</span><span class="w"> </span><span class="p">%}</span>
 # Indexed note that appears in margin
-&lt;label for='sidenote-id' class='margin-toggle sidenote-number'&gt;&lt;/label&gt;&lt;input type='checkbox' id='sidenote-id' class='margin-toggle'/&gt;&lt;span class='sidenote'&gt;This is a random sidenote &lt;/span&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">sidenote</span><span class="w"> </span><span class="s2">"sidenote-id"</span><span class="w"> </span><span class="s2">"This is a random sidenote"</span><span class="w"> </span><span class="p">%}</span>
 # Non-indexed note that appears in margin
-&lt;label for='margin-note-id' class='margin-toggle'&gt; &amp;#8853;&lt;/label&gt;&lt;input type='checkbox' id='margin-note-id' class='margin-toggle'/&gt;&lt;span class='marginnote'&gt;Random thought when drinking &lt;/span&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">marginnote</span><span class="w"> </span><span class="s2">"margin-note-id"</span><span class="w"> </span><span class="s2">"Random thought when drinking"</span><span class="w"> </span><span class="p">%}</span>
 # Full-width image
-&lt;figure class='fullwidth'&gt;&lt;img src='/et/assets/img/full-width.png'/&gt;&lt;figcaption&gt;A full-width image.&lt;/figcaption&gt;&lt;/figure&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">fullwidth</span><span class="w"> </span><span class="s2">"assets/img/full-width.png"</span><span class="w"> </span><span class="s2">"A full-width image."</span><span class="w"> </span><span class="p">%}</span>
 # Main-column image
-&lt;figure&gt;&lt;img src='http://example.com/image.jpg'/&gt;&lt;figcaption class='maincolumn-figure'&gt;Main column image.&lt;/figcaption&gt;&lt;/figure&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">maincolumn</span><span class="w"> </span><span class="s2">"http://example.com/image.jpg"</span><span class="w"> </span><span class="s2">"Main column image."</span><span class="w"> </span><span class="p">%}</span>
 # Margin image
-&lt;label for='margin-figure-id' class='margin-toggle'&gt;&amp;#8853;&lt;/label&gt;&lt;input type='checkbox' id='margin-figure-id' class='margin-toggle'/&gt;&lt;span class='marginnote'&gt;&lt;img class='fullwidth' src='/et/assets/img/side.png'/&gt;&lt;br&gt;This is the caption&lt;/span&gt;
+<span class="p">{%</span><span class="w"> </span><span class="nt">marginfigure</span><span class="w"> </span><span class="s2">"margin-figure-id"</span><span class="w"> </span><span class="s2">"assets/img/side.png"</span><span class="w"> </span><span class="s2">"This is the caption"</span><span class="w"> </span><span class="p">%}</span>
+
 </code></pre></div></div>
 </article>
     <span class="print-footer"

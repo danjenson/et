@@ -42,9 +42,10 @@ Here are some quirks:
 
 1. Mathjax prefers subscripts inside tags, i.e. `\mathbb{E_{\tau\sim P(\theta')}}` renders $\mathbb{E_{\tau\sim P(\theta')}}$, but `\mathbb{E}_{\tau\sim P(\theta')}` will not render correctly. Same for `\vec{a_i}` and `\vec{a}_i`.
 
-Available liquid tags:
+Additional Liquid tags:
 
 ```liquid
+{% raw %}
 # Capitalizes words
 {% newthought "Example website: <a href='http://example.com'>example label</a>" %}
 # Short quotation
@@ -59,4 +60,5 @@ Available liquid tags:
 {% maincolumn "http://example.com/image.jpg" "Main column image." %}
 # Margin image
 {% marginfigure "margin-figure-id" "assets/img/side.png" "This is the caption" %}
+{% endraw %}
 ```
