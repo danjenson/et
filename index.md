@@ -42,7 +42,7 @@ Here are some quirks:
 
 1. Mathjax prefers subscripts inside tags, i.e. `\mathbb{E_{\tau\sim P(\theta')}}` renders $\mathbb{E_{\tau\sim P(\theta')}}$, but `\mathbb{E}_{\tau\sim P(\theta')}` will not render correctly. Same for `\vec{a_i}` and `\vec{a}_i`.
 
-Additional Liquid tags:
+The following Liquid tags become available if you copy the `_plugins` directory to your project:
 
 ```liquid
 {% raw %}
