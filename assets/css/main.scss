@@ -28,6 +28,29 @@
 }
 
 html,
+html[data-theme="light"] {
+  --main-background-color: #fffff8;
+  --main-text-color: #111;
+}
+
+html[data-theme="dark"] {
+  --main-background-color: #111;
+  --main-text-color: #fffff8;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  html[data-theme="dark"] {
+    --main-background-color: #111;
+    --main-text-color: #fffff8;
+  }
+  html[data-theme="light"] {
+    --main-background-color: #fffff8;
+    --main-text-color: #111;
+  }
+}
+
+html,
 body {
   height: 100%;
 }
@@ -92,22 +115,42 @@ p > a,
 cite > a,
 span > a {
   @if $link-style == underline {
-    color: $text-color;
+    color: var(--main-text-color);
     text-decoration: none;
-    background: -webkit-linear-gradient($bg-color, $bg-color),
-      -webkit-linear-gradient($bg-color, $bg-color),
+    background: -webkit-linear-gradient(
+        var(--main-background-color),
+        var(--main-background-color)
+      ),
+      -webkit-linear-gradient(
+          var(--main-background-color),
+          var(--main-background-color)
+        ),
       -webkit-linear-gradient(currentColor, currentColor);
-    background: linear-gradient($bg-color, $bg-color),
-      linear-gradient($bg-color, $bg-color),
+    background: linear-gradient(
+        var(--main-background-color),
+        var(--main-background-color)
+      ),
+      linear-gradient(
+        var(--main-background-color),
+        var(--main-background-color)
+      ),
       linear-gradient(currentColor, currentColor);
     -webkit-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
     -moz-background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
     background-size: 0.05em 1px, 0.05em 1px, 1px 1px;
     background-repeat: no-repeat, no-repeat, repeat-x;
-    text-shadow: 0.03em 0 $bg-color, -0.03em 0 $bg-color, 0 0.03em $bg-color,
-      0 -0.03em $bg-color, 0.06em 0 $bg-color, -0.06em 0 $bg-color,
-      0.09em 0 $bg-color, -0.09em 0 $bg-color, 0.12em 0 $bg-color,
-      -0.12em 0 $bg-color, 0.15em 0 $bg-color, -0.15em 0 $bg-color;
+    text-shadow: 0.03em 0 var(--main-background-color),
+      -0.03em 0 var(--main-background-color),
+      0 0.03em var(--main-background-color),
+      0 -0.03em var(--main-background-color),
+      0.06em 0 var(--main-background-color),
+      -0.06em 0 var(--main-background-color),
+      0.09em 0 var(--main-background-color),
+      -0.09em 0 var(--main-background-color),
+      0.12em 0 var(--main-background-color),
+      -0.12em 0 var(--main-background-color),
+      0.15em 0 var(--main-background-color),
+      -0.15em 0 var(--main-background-color);
     background-position: 0% 93%, 100% 93%, 0% 93%;
   } @else {
     color: $contrast-color;
@@ -121,8 +164,8 @@ body {
   margin-right: auto;
   padding-left: 12.5%;
   font-family: $body-font;
-  background-color: $bg-color;
-  color: $text-color;
+  background-color: var(--main-background-color);
+  color: var(--main-text-color);
   max-width: 1400px;
   counter-reset: sidenote-counter;
 }
@@ -278,14 +321,6 @@ p pre code {
   line-height: 1.71428571; // of triple backticks plus rationalized line-heights and margins
   margin-top: 1.71428571rem;
 }
-
-// TODO: customize code?
-// pre.highlight {
-//   background-color: $bg-color-code;
-//   border-color: $border-color;
-//   border-style: solid;
-//   border-width: thin;
-// }
 
 h1 code,
 h2 code,
@@ -652,6 +687,7 @@ nav.group a.active:after {
   content: "\000a0\0003e";
 }
 
+button,
 header > nav a {
   font-size: 1.2rem;
   font-family: $sans-font;
@@ -668,12 +704,20 @@ header > nav a {
   //margin-left: 1rem;
   vertical-align: baseline;
 }
-header > nav a img {
+
+button {
+  background-color: var(--main-background-color);
+  border: 0;
+  position: relative;
+  float: right;
+}
+margin header > nav a img {
   height: 5rem;
   position: relative;
   max-width: 100%;
   top: -1.5rem;
 }
+
 ul.footer-links,
 .credits {
   list-style: none;

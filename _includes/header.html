@@ -9,5 +9,11 @@
     {% else %}
     <a href="{{node.url | prepend: site.baseurl}}">{{node.title}}</a>
     {% endif %} {% endunless %} {% endfor %}
+    <button type="button"
+      id="theme-toggle"
+      onclick="modeSwitcher()"
+      style="cursor: pointer"
+    ></button>
   </nav>
+  <script src="{{ "/assets/js/theme-toggle.js" | prepend: site.baseurl "}}"></script>
 </header>
