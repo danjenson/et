@@ -109,7 +109,8 @@ block, create a newline before the opening <code class="language-plaintext highl
 <p>Here are some quirks:</p>
 
 <ol>
-  <li>Mathjax prefers subscripts inside tags, i.e. <code class="language-plaintext highlighter-rouge">\mathbb{E_{\tau\sim P(\theta')}}</code> renders $\mathbb{E_{\tau\sim P(\theta’)}}$, but <code class="language-plaintext highlighter-rouge">\mathbb{E}_{\tau\sim P(\theta')}</code> will not render correctly. Same for <code class="language-plaintext highlighter-rouge">\vec{a_i}</code> and <code class="language-plaintext highlighter-rouge">\vec{a}_i</code>.</li>
+  <li>If subscripts aren’t rendering correctly in Mathjax, escape them with an
+underscore, e.g. <code class="language-plaintext highlighter-rouge">$\vec{a}\_i$</code> renders as $\vec{a}_i$.</li>
 </ol>
 
 <p>The following Liquid tags become available if you copy the <code class="language-plaintext highlighter-rouge">_plugins</code> directory to your project:</p>
