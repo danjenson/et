@@ -40,8 +40,8 @@ block, create a newline before the opening `$$`. You can see [here](https://docs
 
 Here are some quirks:
 
-1. If subscripts aren't rendering correctly in Mathjax, escape them with an
-   underscore, e.g. `$\vec{a}\_i$` renders as $\vec{a}\_i$.
+1. In inline MathJax blocks, i.e. single `$` delimiters, escape subscripts,
+   e.g. `$\vec{a}\_i$` renders as $\vec{a}\_i$.
 
 The following Liquid tags become available if you copy the `_plugins` directory to your project:
 

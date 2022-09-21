@@ -242,3 +242,19 @@ distribution.
 - MCMC methods are expensive when they generate samples uniformly because they
   generate low value samples.
 - When the modes are random, GFNs should provide no added benefit.
+- **Lemma 5**:
+
+$$
+\begin{aligned}
+\forall \tau=\left(s_1, \ldots, s_n\right) \in \mathcal{T}^{\text {partial }}
+& \hat{P}_F(\tau):=\prod_{t=1}^{n-1} \hat{P}_F\left(s_{t+1} \mid s_t\right) \\
+\forall \tau=\left(s_1, \ldots, s_n\right) \in \mathcal{T}^{\text {partial }}
+& \hat{P}_B(\tau):=\prod_{t=1}^{n-1} \hat{P}_B\left(s_t \mid s_{t+1}\right) \\
+\forall s \in \mathcal{S} \backslash\left\{s_f\right\} \quad \sum_{\tau \in
+\mathcal{T}_{s, f}}
+& \hat{P}_F(\tau)=1 \\
+\forall s^{\prime} \in \mathcal{S} \backslash\left\{s_0\right\} \quad
+\sum_{\tau \in \mathcal{T}_{0, s^{\prime}}}
+& \hat{P}_B(\tau)=1
+\end{aligned}
+$$
