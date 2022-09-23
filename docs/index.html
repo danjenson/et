@@ -113,14 +113,15 @@ bundle <span class="nb">install
 <p>You can also use latex with <code class="language-plaintext highlighter-rouge">$$</code>, e.g. <code class="language-plaintext highlighter-rouge">$$f^2$$</code> becomes \(f^2\). To create a
 block, create a newline before the opening <code class="language-plaintext highlighter-rouge">$$</code>. You can see <a href="https://docs.mathjax.org/en/latest/input/tex/macros/index.html">here</a> the list of available mathjax commands.</p>
 
-<p>Here are some quirks:</p>
+<p>Protips:</p>
 
 <ol>
-  <li>In inline MathJax blocks, i.e. single <code class="language-plaintext highlighter-rouge">$</code> delimiters, escape subscripts,
-e.g. <code class="language-plaintext highlighter-rouge">$\vec{a}\_i$</code> renders as $\vec{a}_i$.</li>
+  <li>If you use (n)vim, add the
+<a href="https://github.com/preservim/vim-markdown">vim-markdown</a> plugin and enable
+math markdown with <code class="language-plaintext highlighter-rouge">let g:vim_markdown_math = 1</code>; this will prevent all
+sorts of syntax highlighting issues when using <code class="language-plaintext highlighter-rouge">$</code> and <code class="language-plaintext highlighter-rouge">_</code>.</li>
+  <li>Copy the <code class="language-plaintext highlighter-rouge">_plugins</code> directory to your project to get access to the following Liquid tags:</li>
 </ol>
-
-<p>The following Liquid tags become available if you copy the <code class="language-plaintext highlighter-rouge">_plugins</code> directory to your project:</p>
 
 <div class="language-liquid highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 # Capitalizes words

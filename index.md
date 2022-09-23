@@ -38,12 +38,13 @@ bundle exec jekyll serve
 You can also use latex with `$$`, e.g. `$$f^2$$` becomes $$f^2$$. To create a
 block, create a newline before the opening `$$`. You can see [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) the list of available mathjax commands.
 
-Here are some quirks:
+Protips:
 
-1. In inline MathJax blocks, i.e. single `$` delimiters, escape subscripts,
-   e.g. `$\vec{a}\_i$` renders as $\vec{a}\_i$.
-
-The following Liquid tags become available if you copy the `_plugins` directory to your project:
+1. If you use (n)vim, add the
+   [vim-markdown](https://github.com/preservim/vim-markdown) plugin and enable
+   math markdown with `let g:vim_markdown_math = 1`; this will prevent all
+   sorts of syntax highlighting issues when using `$` and `_`.
+1. Copy the `_plugins` directory to your project to get access to the following Liquid tags:
 
 ```liquid
 {% raw %}
