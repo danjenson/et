@@ -15,10 +15,10 @@ gem "jekyll", "~> 4.2.2"
 # gem "github-pages", group: :jekyll_plugins
 # If you have any plugins, put them here!
 group :jekyll_plugins do
-  gem "jekyll-feed", "~> 0.12"
   gem "jekyll-coffeescript", "~> 1.1"
   gem "jekyll-commonmark-ghpages", "~> 0.1.6"
   gem "jekyll-default-layout", "~> 0.1.5"
+  gem "jekyll-feed", "~> 0.12"
   gem "jekyll-gist", "~> 1.5"
   gem "jekyll-github-metadata", "~> 2.15"
   gem "jekyll-include-cache", "~> 0.2.1"
@@ -34,6 +34,7 @@ group :jekyll_plugins do
   gem "jekyll-sitemap", "~> 1.4"
   gem "jekyll-swiss", "~> 1.0"
   gem "jekyll-titles-from-headings", "~> 0.5.3"
+  gem "jekyll-toc", "~> 0.17.1"
   gem "jemoji", "~> 0.12.0"
   gem "kramdown", "~> 2.3"
   gem "kramdown-parser-gfm", "~> 1.1"
