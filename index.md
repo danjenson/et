@@ -56,8 +56,9 @@ Protips:
    [vim-markdown](https://github.com/preservim/vim-markdown) plugin and enable
    math markdown with `let g:vim_markdown_math = 1`; this will prevent all
    sorts of syntax highlighting issues when using `$` and `_`.
-1. You can add `toc: true` to the front matter (yaml at the top of READMEs) to
-   automatically include a table of contents. See `notes.md` for an example.
+1. To add tables of contents to your files, run `bundle add jekyll-toc && bundle install`, then you can add `toc: true` to the front matter (yaml at
+   the top of READMEs) to automatically include a table of contents. See
+   `notes.md` for an example.
 1. Copy the `_plugins` directory to your project to get access to the following Liquid tags:
 
 ```liquid
