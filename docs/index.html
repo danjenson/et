@@ -113,6 +113,20 @@ bundle <span class="nb">install
 <p>You can also use latex with <code class="language-plaintext highlighter-rouge">$$</code>, e.g. <code class="language-plaintext highlighter-rouge">$$f^2$$</code> becomes \(f^2\). To create a
 block, create a newline before the opening <code class="language-plaintext highlighter-rouge">$$</code>. You can see <a href="https://docs.mathjax.org/en/latest/input/tex/macros/index.html">here</a> the list of available mathjax commands.</p>
 
+<p>Gotchas:</p>
+
+<ol>
+  <li>Occasionally, rendering will fail with single <code class="language-plaintext highlighter-rouge">$</code> delimiters, usually when
+there is a command followed by an underscore, i.e.
+<code class="language-plaintext highlighter-rouge">$\mathcal{H}_{edge}:\mathcal{F}_{Markov}(G,R)\to\mathcal{O}_{edge}$</code> will
+render as
+$\mathcal{H}<em>{edge}:\mathcal{F}</em>{Markov}(G,R)\to\mathcal{O}_{edge}$. The
+solution is to escape the <code class="language-plaintext highlighter-rouge">_</code> for the subscripts. So,
+<code class="language-plaintext highlighter-rouge">$\mathcal{H}\_{edge}:\mathcal{F}\_{Markov}(G,R)\to\mathcal{O}\_{edge}$</code> is
+correctly rendered as
+$\mathcal{H}_{edge}:\mathcal{F}_{Markov}(G,R)\to\mathcal{O}_{edge}$.</li>
+</ol>
+
 <p>Protips:</p>
 
 <ol>

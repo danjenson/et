@@ -38,6 +38,18 @@ bundle exec jekyll serve
 You can also use latex with `$$`, e.g. `$$f^2$$` becomes $$f^2$$. To create a
 block, create a newline before the opening `$$`. You can see [here](https://docs.mathjax.org/en/latest/input/tex/macros/index.html) the list of available mathjax commands.
 
+Gotchas:
+
+1. Occasionally, rendering will fail with single `$` delimiters, usually when
+   there is a command followed by an underscore, i.e.
+   `$\mathcal{H}_{edge}:\mathcal{F}_{Markov}(G,R)\to\mathcal{O}_{edge}$` will
+   render as
+   $\mathcal{H}_{edge}:\mathcal{F}_{Markov}(G,R)\to\mathcal{O}_{edge}$. The
+   solution is to escape the `_` for the subscripts. So,
+   `$\mathcal{H}\_{edge}:\mathcal{F}\_{Markov}(G,R)\to\mathcal{O}\_{edge}$` is
+   correctly rendered as
+   $\mathcal{H}\_{edge}:\mathcal{F}\_{Markov}(G,R)\to\mathcal{O}\_{edge}$.
+
 Protips:
 
 1. If you use (n)vim, add the
