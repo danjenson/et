@@ -1,5 +1,6 @@
 ---
 title: Example Notes
+title_url: https://arxiv.org/abs/2111.09266
 toc: true
 ---
 

@@ -59,6 +59,7 @@ Protips:
 1. To add tables of contents to your files, run `bundle add jekyll-toc && bundle install`, then you can add `toc: true` to the front matter (yaml at
    the top of READMEs) to automatically include a table of contents. See
    `notes.md` for an example.
+1. You can use the `title_url` key to add a hyperlink to the title.
 1. Copy the `_plugins` directory to your project to get access to the following Liquid tags:
 
 ```liquid
