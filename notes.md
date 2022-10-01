@@ -64,7 +64,7 @@ distribution.
 
 {% maincolumn "assets/img/full-width.png" "A main column image." %}
 
-- Definitions:
+- Definitions: {% marginnote 'm1' 'Example margin note.' %}
   - $f$: energy function $\rightarrow$ generative distribution.
   - Transforms a positive reward function into a generative policy that
     samples in proportion returns.
@@ -78,7 +78,7 @@ distribution.
     =R\left(s^{\prime}\right)+\sum_{a^{\prime}
     \in \mathcal{A}\left(s^{\prime}\right)} F\left(s^{\prime}, a^{\prime}\right)
     $$
-- Propositions:
+- Propositions: {% sidenote 's1' 'Example side note.' %}
 
   - **Proposition 1**: Illustrates the "overcounting" problem in the non-injective case.
     - Given:

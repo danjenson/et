@@ -239,7 +239,6 @@ p .subtitle {
 }
 
 .MathJax,
-p,
 pre,
 ol,
 ul {
@@ -250,6 +249,7 @@ ul {
 
 // NOTE: danjenson/et add
 p {
+  font-size: 1.4rem;
   padding-top: 1%;
   padding-bottom: 1%;
 }
