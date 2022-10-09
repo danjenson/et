@@ -159,10 +159,10 @@ span > a {
 }
 
 body {
-  width: 87.5%;
+  width: 75%; // Changed from 87.5%
   margin-left: auto;
   margin-right: auto;
-  padding-left: 12.5%;
+  // padding-left: 12.5%;  # danjenson/et remove
   font-family: $body-font;
   background-color: var(--main-background-color);
   color: var(--main-text-color);
@@ -703,8 +703,12 @@ label.margin-toggle:not(.sidenote-number) {
 
 header > nav.group,
 body footer {
-  width: 95%;
+  // width: 90%;  // danjenson/et
   padding-top: 2rem;
+}
+
+#theme-toggle {
+  padding-right: 0;
 }
 
 nav.group a.active:before {
