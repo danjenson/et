@@ -247,7 +247,7 @@ th, td { font-size: 1.2rem; line-height: 1.71428571; }
 
 .booktabs tbody tr, .booktabs thead tr th.r, .booktabs td.r { text-align: right !important; }
 
-.table-caption { float: right; clear: right; margin-right: -60%; width: 50%; margin-top: 0; margin-bottom: 0; font-size: 1rem; line-height: 1.96; }
+.table-caption { float: right; clear: right; width: 50%; margin-top: 0; margin-bottom: 0; font-size: 1rem; line-height: 1.96; }
 
 /* -- End of Table Styling section --*/
 /* Basic Layout stuff --*/
@@ -263,7 +263,7 @@ figure.fullwidth figcaption { float: left; margin-right: 0%; margin-left: 33%; m
 
 img { max-width: 100%; }
 
-.sidenote, .marginnote { float: right; clear: right; margin-right: -60%; width: 50%; margin-top: 0; margin-bottom: 1.96rem; font-size: 1rem; line-height: 1.96; vertical-align: baseline; position: relative; }
+.sidenote, .marginnote { float: right; clear: right; margin-right: -30%; width: 50%; margin-top: 0; margin-bottom: 1.96rem; font-size: 1rem; line-height: 1.96; vertical-align: baseline; position: relative; }
 
 blockquote .sidenote, blockquote .marginnote { margin-right: -79%; }
 
