@@ -305,7 +305,7 @@ label.margin-toggle:not(.sidenote-number) { display: none; }
 
 header > nav.group, body footer { padding-top: 2rem; }
 
-#theme-toggle { padding-right: 0; }
+#theme-toggle { padding-right: 0rem; }
 
 nav.group a.active:before { content: "\0003c\000a0"; }
 
