@@ -283,7 +283,7 @@ div.table-wrapper, table { overflow-x: auto; }
 
 pre { padding-left: 2.5%; overflow-x: auto; }
 
-.fullwidth, li.listing div { max-width: 90%; }
+.fullwidth, li.listing div { max-width: 100%; }
 
 .full-width .sidenote, .full-width .sidenote-number, .full-width .marginnote { display: none; }
 
