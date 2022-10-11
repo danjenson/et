@@ -263,7 +263,7 @@ figure.fullwidth figcaption { float: left; margin-right: 0%; margin-left: 33%; m
 
 img { max-width: 100%; }
 
-.sidenote, .marginnote { float: right; clear: right; margin-right: -30%; width: 50%; margin-top: 0; margin-bottom: 1.96rem; font-size: 1rem; line-height: 1.96; vertical-align: baseline; position: relative; }
+.sidenote, .marginnote { float: right; clear: right; margin-right: -60%; width: 50%; margin-top: 0; margin-bottom: 1.96rem; font-size: 1rem; line-height: 1.96; vertical-align: baseline; position: relative; }
 
 blockquote .sidenote, blockquote .marginnote { margin-right: -79%; }
 
