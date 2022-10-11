@@ -172,11 +172,11 @@ p > a, cite > a, span > a { color: var(--main-text-color); text-decoration: none
 
 body { width: 75%; margin-left: auto; margin-right: auto; font-family: ETBook, ETBembo, "Chronicle Text G2", Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif; background-color: var(--main-background-color); color: var(--main-text-color); max-width: 1400px; counter-reset: sidenote-counter; }
 
-h1 { font-weight: 400; margin-top: 1.568rem; margin-bottom: 1.568rem; font-size: 2.4rem; line-height: 0.784; }
+h1 { font-weight: 400; margin-top: 1.568rem; margin-bottom: 1.568rem; font-size: 2.3rem; line-height: 0.784; }
 
 h1 a { color: var(--main-text-color); text-decoration: underline; }
 
-h2 { font-style: italic; font-weight: 400; margin-top: 1.866666666666667rem; margin-bottom: 0; font-size: 2.1rem; line-height: 0.933333333333333; }
+h2 { font-style: italic; font-weight: 400; margin-top: 1.866666666666667rem; margin-bottom: 0; font-size: 2rem; line-height: 0.933333333333333; }
 
 h3 { font-style: italic; font-weight: 400; font-size: 1.8rem; margin-top: 2.1777777777777778rem; margin-bottom: 0; line-height: 1.08888888888889; }
 
