@@ -3,10 +3,11 @@ layout: default
 ---
 
 {% if page.title_url %}
-<h1><a href="{{ page.title_url }}" target="_blank">{{ page.title }}</a></h1>
+<h1 class="title">
+  <a href="{{ page.title_url }}" target="_blank">{{ page.title }}</a>
+</h1>
 {% else %}
-<h1>{{ page.title }}</h1>
-{% endif %}
-<p class="subtitle">{{ page.date | date: "%B %-d, %Y" }}</p>
-
-{{ content | toc }}
+<h1 class="title">{{ page.title }}</h1>
+{% endif %} {% if page.subtitle %}
+<h2 class="subtitle">{{ page.subtitle }}</h2>
+{% endif %} {{ content | toc }}
